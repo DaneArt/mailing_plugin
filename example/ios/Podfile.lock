@@ -1,0 +1,22 @@
+PODS:
+  - Flutter (1.0.0)
+  - mailing_plugin (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - mailing_plugin (from `.symlinks/plugins/mailing_plugin/ios`)
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  mailing_plugin:
+    :path: ".symlinks/plugins/mailing_plugin/ios"
+
+SPEC CHECKSUMS:
+  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  mailing_plugin: 011def6b75c065a89d91ff33b7b4a5e61a9d6ec7
+
+PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
+
+COCOAPODS: 1.10.0
