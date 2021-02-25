@@ -27,10 +27,11 @@ class MailingPlugin: FlutterPlugin, MethodCallHandler {
 
   override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
 
-    if (call.method == "send_mail") {    val sendTo =  ((call.arguments as HashMap<*, *>)["to"] as ArrayList<*>).map {it.toString()}
+    if (call.method == "send_mail") {
+      val sendTo =  (call.arguments as HashMap<*, *>)["to"].toString()
       val subject = (call.arguments as HashMap<*, *>)["subject"].toString()
       val message = (call.arguments as HashMap<*,*>)["message"].toString()
-      val uriText = "mailto:" + Uri.encode(sendTo.joinToString { it }) +
+      val uriText = "mailto:" + Uri.encode(sendTo) +
               "?subject=" + Uri.encode(subject) +
               "&body=" + Uri.encode(message)
       val email = Intent(Intent.ACTION_SENDTO)
@@ -54,10 +55,10 @@ class MailingPlugin: FlutterPlugin, MethodCallHandler {
 
       shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_MULTIPLE_TASK)
       context.startActivity(shareIntent)
-    }else if(call.method == "send_sms"){    val sendTo =  ((call.arguments as HashMap<*, *>)["to"] as ArrayList<*>).map {it.toString()}
+    }else if(call.method == "send_sms"){    val sendTo =  (call.arguments as HashMap<*, *>)["to"].toString()
       val subject = (call.arguments as HashMap<*, *>)["subject"].toString()
       val message = (call.arguments as HashMap<*,*>)["message"].toString()
-      val uriText = "smsto:" + Uri.encode(sendTo.joinToString { it })
+      val uriText = "smsto:" + Uri.encode(sendTo)
       val sms = Intent(Intent.ACTION_VIEW)
       sms.data = Uri.parse(uriText)
       sms.putExtra("sms_body", message)

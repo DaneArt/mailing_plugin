@@ -2,15 +2,25 @@ import 'dart:async';
 
 import 'package:flutter/services.dart';
 
+///Model for [MailingPlugin.mailto] method
 class Email {
+  ///List of recipients
   final List<String> to;
+
+  ///Subject of a letter
   final String subject;
+
+  ///Body of a message. Plain text.
   final String message;
   Email(this.to, this.subject, this.message);
 }
 
+///Model for [MailingPlugin.smsto]
 class SMS {
+  ///Recipients of SMS.
   final List<String> to;
+
+  ///Body of sms message
   final String message;
 
   SMS(this.to, this.message);
@@ -21,7 +31,7 @@ class MailingPlugin {
 
   static void mailto(Email mail) {
     _channel.invokeMethod('send_mail', {
-      'to': mail.to,
+      'to': mail.to.join(', '),
       'subject': mail.subject,
       'message': mail.message,
     });
@@ -35,6 +45,6 @@ class MailingPlugin {
 
   static void sendSMS(SMS message) {
     _channel.invokeMethod(
-        'send_sms', {'to': message.to, 'message': message.message});
+        'send_sms', {'to': message.to.join(', '), 'message': message.message});
   }
 }
